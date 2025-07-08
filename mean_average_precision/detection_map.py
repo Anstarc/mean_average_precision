@@ -50,7 +50,7 @@ class DetectionMAP:
         if pred_bb.ndim == 1:
             pred_bb = np.repeat(pred_bb[:, np.newaxis], 4, axis=1)
         IoUmask = None
-        if len(pred_bb) > 0 and len(gt_bb) > 0:
+        if pred_bb.size > 0 and gt_bb.size > 0:
             IoUmask = self.compute_IoU_mask(pred_bb, gt_bb, self.overlap_threshold)
         for accumulators, r in zip(self.total_accumulators, self.pr_scale):
             if DEBUG:
